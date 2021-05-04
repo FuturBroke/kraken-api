@@ -1,0 +1,10 @@
+# PyCharm
+/.idea/
+__pycache__/
+
+# Pytest
+/.pytest_cache/
+
+# Package building
+/dist/
+/krakenapi.egg-info/
