@@ -299,10 +299,8 @@ class KrakenApi:
         https://www.kraken.com/en-us/features/api
 
         :param pair: Order pair.
-        :param start_unix_time: Download start date as unix time in seconds or
-        nanoseconds as int.
-        :param end_unix_time: Download end date as unix time in seconds or
-        nanoseconds as int.
+        :param start_unix_time: Start date as unix time in seconds or nanoseconds.
+        :param end_unix_time: End date as unix time in seconds or nanoseconds.
         :param verbose: Print download status or not.
         :return: Trade history as list of list.
         """

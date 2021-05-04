@@ -2,6 +2,10 @@
 Python library for Kraken API.<br>
 Build for Futur Broke needs, features will be added along  with projects development.
 
+## Documentation
+Package documentation is available at this address:
+https://futurbroke.github.io/kraken-api/
+
 ## Where to get it
 The source code is currently hosted on GitHub at: https://github.com/FuturBroke/kraken-api
 
