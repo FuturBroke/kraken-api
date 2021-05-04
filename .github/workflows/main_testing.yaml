@@ -22,3 +22,5 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: pytest -vv
+      - name: Test package building
+        run: python setup.py sdist
