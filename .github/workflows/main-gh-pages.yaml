@@ -22,6 +22,9 @@ jobs:
         run: |
           pip3 install setuptools
           pip3 install sphinx sphinx-rtd-theme
+      - name: "Run Sphinx automated documentation"
+        run: |
+          sphinx-apidoc --ext-autodoc -o docs krakenapi
       - name: "Build Sphinx Doc"
         run: |
           make -C docs html
