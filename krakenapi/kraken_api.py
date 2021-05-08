@@ -18,7 +18,7 @@ class KrakenApi:
     api_public_key: str
     api_private_key: str
 
-    def __init__(self, api_public_key: str, api_private_key: str) -> None:
+    def __init__(self, api_public_key: str = "", api_private_key: str = "") -> None:
         """
         Initialize the KrakenAPI object.
 
