@@ -171,7 +171,8 @@ class KrakenApi:
 
     def get_assets(self) -> dict:
         """
-        Return Kraken trading pairs.
+        Get information about the assets that are available for deposit,
+        withdrawal, trading and staking.
 
         :return: Dict of available asset pairs and their information.
         """
@@ -181,7 +182,7 @@ class KrakenApi:
 
     def get_asset_pairs(self) -> dict:
         """
-        Return Kraken trading pairs.
+        Get tradable asset pairs
 
         :return: Dict of available asset pairs and their information.
         """
