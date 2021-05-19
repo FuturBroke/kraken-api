@@ -154,13 +154,20 @@ class KrakenApi:
         :return: Kraken API's response as dict.
         """
         # Request the api.
-        data = urlopen(request).read()
+        try:
+            data = urlopen(request).read()
+        except ConnectionResetError:
+            # Handle connection reset error by waiting 0.5sc before retrying.
+            print("Kraken API connection reset error. Waiting 0.5sc...")
+            time.sleep(0.5)
+            # Resend request
+            return self.send_api_request(request)
         # Decode the API response.
         data = self.extract_response_data(data)
         # Raise an error if Kraken extracted response is a string.
         if type(data) == str:
             if data == "EAPI:Rate limit exceeded":
-                # Handle rate limit from Kraken API by waiting 10sc
+                # Handle rate limit from Kraken API by waiting 10sc.
                 print("Kraken API rate limit exceeded. Waiting 10sc...")
                 time.sleep(10)
                 # Resend request
