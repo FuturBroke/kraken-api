@@ -331,3 +331,24 @@ class KrakenApi:
             # Wait to handle Kraken API rate limit
             time.sleep(1.76)
         return trades
+
+    def get_asset_altname(self, asset: str) -> str:
+        """
+        From passed asset name, get its alt name on Kraken API.
+
+        :param asset: Asset as string.
+        :return: Asset alt name as string.
+        """
+        available_assets = self.get_assets()
+        try:
+            altname = [
+                asset_infos.get("altname")
+                for asset_id, asset_infos in available_assets.items()
+                if asset_id == asset or asset_infos.get("altname") == asset
+            ][0]
+        except IndexError:
+            raise ValueError(
+                f"{asset} asset not available on Kraken. Available assets:"
+                f" {available_assets.keys()}."
+            )
+        return altname
