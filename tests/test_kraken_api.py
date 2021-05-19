@@ -318,10 +318,7 @@ class TestKrakenAPI:
             "txid": ["OUHXFN-RTP6W-ART4VP"],
         }
 
-    @vcr.use_cassette(
-        "tests/fixtures/vcr_cassettes/test_get_trades.yaml",
-        filter_headers=["API-Key", "API-Sign"],
-    )
+    @vcr.use_cassette("tests/fixtures/vcr_cassettes/test_get_trades.yaml")
     def test_get_trades_history(self, capfd):
         data = self.ka_public.get_trades_history("XBTEUR", 1619502600, 1619503200, True)
         assert type(data) == list
@@ -329,3 +326,13 @@ class TestKrakenAPI:
         captured = capfd.readouterr()
         test_output = "XBTEUR: Downloaded trades from 2021-04-27 05:50:00 to 2021-04-27 06:11:16.787426.\n"
         assert captured.out == test_output
+
+    def test_get_asset_name(self):
+        with vcr.use_cassette("tests/fixtures/vcr_cassettes/test_get_assets.yaml"):
+            with pytest.raises(ValueError) as e_info:
+                self.ka_public.get_asset_altname("ETHXBT")
+        assert "ETHXBT asset not available on Kraken." in str(e_info.value)
+        with vcr.use_cassette("tests/fixtures/vcr_cassettes/test_get_assets.yaml"):
+            altname = self.ka_public.get_asset_altname("XXBT")
+        assert altname == "XBT"
+
