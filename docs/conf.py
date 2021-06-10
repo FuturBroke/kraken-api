@@ -23,7 +23,7 @@ copyright = "2021, Avel Docquin"
 author = "Avel Docquin"
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.0-alpha.5"
+release = "1.0.0-alpha.6"
 
 
 # -- General configuration ---------------------------------------------------

@@ -6,6 +6,7 @@ import hashlib
 import hmac
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
+from urllib.error import URLError
 from .utils import utc_unix_time_datetime
 
 
@@ -156,9 +157,9 @@ class KrakenApi:
         # Request the api.
         try:
             data = urlopen(request).read()
-        except ConnectionResetError:
+        except (ConnectionResetError, URLError):
             # Handle connection reset error by waiting 0.5sc before retrying.
-            print("Kraken API connection reset error. Waiting 0.5sc...")
+            print("Kraken API connection error. Waiting 0.5sc...")
             time.sleep(0.5)
             # Resend request
             return self.send_api_request(request)
