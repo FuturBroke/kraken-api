@@ -329,11 +329,15 @@ class KrakenApi:
 
             if verbose:
                 print(
-                    f"{pair}: Downloaded trades from {trades_start_date} to {trades_end_date}."
+                    f"{pair}: Downloaded trades from "
+                    f"{trades_start_date} to {trades_end_date}."
                 )
 
             # Quit when all trades are downloaded
-            if trades_end_date >= download_end_date:
+            if (
+                trades_end_date >= download_end_date
+                or trades_start_date == trades_end_date
+            ):
                 break
 
             # Wait to handle Kraken API rate limit
