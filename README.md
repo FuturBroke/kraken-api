@@ -1,6 +1,5 @@
 # Kraken API
-Python library for Kraken API.<br>
-Build for Futur Broke needs, features will be added along  with projects development.
+Python library for Kraken API.
 
 ## Documentation
 Package documentation is available at this address:
