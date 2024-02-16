@@ -3,10 +3,10 @@ Python library for Kraken API.
 
 ## Documentation
 Package documentation is available at this address:
-https://futurbroke.github.io/kraken-api/
+https://adocquin.github.io/kraken-api/
 
 ## Where to get it
-The source code is currently hosted on GitHub at: https://github.com/FuturBroke/kraken-api
+The source code is currently hosted on GitHub at: https://github.com/adocquin/kraken-api
 
 Binary installers for the latest released version are available at the Python Package Index (PyPI):
 ```sh
