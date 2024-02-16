@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>krakenapi &mdash; Kraken API 1.0.0-alpha.7 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=fae870da"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -27,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Kraken API
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Kraken API
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,8 +65,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>krakenapi</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">krakenapi</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -70,13 +77,41 @@
            <div itemprop="articleBody">
              
   <section id="krakenapi">
-<h1>krakenapi<a class="headerlink" href="#krakenapi" title="Permalink to this headline"></a></h1>
+<h1>krakenapi<a class="headerlink" href="#krakenapi" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="krakenapi.html">krakenapi package</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="krakenapi.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="krakenapi.html#module-krakenapi.kraken_api">krakenapi.kraken_api module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="krakenapi.html#module-krakenapi.utils">krakenapi.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="krakenapi.html#module-krakenapi.kraken_api">krakenapi.kraken_api module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi"><code class="docutils literal notranslate"><span class="pre">KrakenApi</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.api_private_key"><code class="docutils literal notranslate"><span class="pre">KrakenApi.api_private_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.api_public_key"><code class="docutils literal notranslate"><span class="pre">KrakenApi.api_public_key</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.create_api_nonce"><code class="docutils literal notranslate"><span class="pre">KrakenApi.create_api_nonce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.create_api_path"><code class="docutils literal notranslate"><span class="pre">KrakenApi.create_api_path()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.create_api_post_data"><code class="docutils literal notranslate"><span class="pre">KrakenApi.create_api_post_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.create_api_request"><code class="docutils literal notranslate"><span class="pre">KrakenApi.create_api_request()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.create_api_signature"><code class="docutils literal notranslate"><span class="pre">KrakenApi.create_api_signature()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.create_order"><code class="docutils literal notranslate"><span class="pre">KrakenApi.create_order()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.extract_response_data"><code class="docutils literal notranslate"><span class="pre">KrakenApi.extract_response_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_asset_altname"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_asset_altname()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_asset_pairs"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_asset_pairs()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_assets"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_assets()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_balance"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_balance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_closed_orders"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_closed_orders()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_open_orders"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_open_orders()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_pair_ticker"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_pair_ticker()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_time"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_time()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_trade_balance"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_trade_balance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.get_trades_history"><code class="docutils literal notranslate"><span class="pre">KrakenApi.get_trades_history()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="krakenapi.html#krakenapi.kraken_api.KrakenApi.send_api_request"><code class="docutils literal notranslate"><span class="pre">KrakenApi.send_api_request()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="krakenapi.html#module-krakenapi.utils">krakenapi.utils module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="krakenapi.html#krakenapi.utils.utc_unix_time_datetime"><code class="docutils literal notranslate"><span class="pre">utc_unix_time_datetime()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="krakenapi.html#module-krakenapi">Module contents</a></li>
 </ul>
 </li>
