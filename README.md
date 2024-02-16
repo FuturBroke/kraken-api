@@ -3,7 +3,7 @@ Python library for Kraken API.
 
 ## Documentation
 Package documentation is available at this address:
-https://aodcquin.github.io/kraken-api/
+https://adocquin.github.io/kraken-api/
 
 ## Where to get it
 The source code is currently hosted on GitHub at: https://github.com/adocquin/kraken-api
