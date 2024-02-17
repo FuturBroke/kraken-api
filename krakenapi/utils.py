@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import UTC, datetime
 
 
 def utc_unix_time_datetime(nix_time: int) -> datetime:
@@ -9,7 +9,7 @@ def utc_unix_time_datetime(nix_time: int) -> datetime:
     :return: Converted date as string.
     """
     try:
-        date = datetime.utcfromtimestamp(nix_time)
+        date = datetime.fromtimestamp(nix_time, UTC).replace(tzinfo=None)
     except OSError:  # Case when unix time is in nanoseconds
-        date = datetime.utcfromtimestamp(nix_time / 1000000000)
+        date = datetime.fromtimestamp(nix_time / 1000000000, UTC).replace(tzinfo=None)
     return date

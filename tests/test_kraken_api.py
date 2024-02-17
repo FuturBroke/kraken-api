@@ -1,8 +1,12 @@
-from krakenapi import KrakenApi
-from freezegun import freeze_time
-import pytest
+import logging
 from urllib.request import Request
+
+import pytest
 import vcr
+from freezegun import freeze_time
+
+from krakenapi import KrakenApi
+
 from .fixtures import trades
 
 
@@ -48,7 +52,7 @@ def test_create_api_post_data(mock_ka_public):
     # Should raise a TypeError if post inputs and api nonce are missing.
     with pytest.raises(TypeError) as e_info:
         mock_ka_public.create_api_post_data()
-    assert "API Post with missing post inputs and nonce ->" in str(e_info.value)
+    assert "API Post with missing post inputs and nonce." in str(e_info.value)
 
 
 def test_create_api_signature(mock_ka_public, mock_ka_private):
@@ -60,7 +64,7 @@ def test_create_api_signature(mock_ka_public, mock_ka_private):
     api_post_data = b"nonce=1617828062628"
     with pytest.raises(ValueError) as e_info:
         mock_ka_public.create_api_signature(api_nonce, api_post_data, api_method)
-    assert "Incorrect Kraken API private key ->" in str(e_info.value)
+    assert "Incorrect Kraken API private key." in str(e_info.value)
     api_signature = mock_ka_private.create_api_signature(
         api_nonce, api_post_data, api_method
     )
@@ -93,7 +97,7 @@ def test_extract_response_data(mock_ka_public):
     data = b"Wrong data"
     with pytest.raises(ValueError) as e_info:
         mock_ka_public.extract_response_data(data)
-    assert "Response received from API was wrongly formatted ->" in str(e_info.value)
+    assert "Response received from API was wrongly formatted." in str(e_info.value)
 
     # Test extract data from Kraken API as dict from bytes
     # with format {"error": list, result: dit}.
@@ -312,13 +316,13 @@ def test_create_order(mock_ka_private):
 
 
 @vcr.use_cassette("tests/fixtures/vcr_cassettes/test_get_trades.yaml")
-def test_get_trades_history(capfd, mock_ka_public):
-    data = mock_ka_public.get_trades_history("XBTEUR", 1619502600, 1619503200, True)
+def test_get_trades_history(caplog, mock_ka_public):
+    caplog.set_level(logging.INFO)
+    data = mock_ka_public.get_trades_history("XBTEUR", 1619502600, 1619503200)
     assert isinstance(data, list)
     assert data == trades
-    captured = capfd.readouterr()
     test_output = "XBTEUR: Downloaded trades from 2021-04-27 05:50:00 to 2021-04-27 06:11:16.787426.\n"
-    assert captured.out == test_output
+    assert test_output in caplog.text
 
 
 def test_get_asset_name(mock_ka_public):
