@@ -1,5 +1,5 @@
 # Kraken API
-Python library for Kraken API.
+Python interface library for Kraken API.
 
 ## Documentation
 Package documentation is available at this address:

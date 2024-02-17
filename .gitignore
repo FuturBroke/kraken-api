@@ -4,6 +4,8 @@ __pycache__/
 
 # Pytest
 /.pytest_cache/
+htmlcov/
+.coverage
 
 # Package building
 /dist/

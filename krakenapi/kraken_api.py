@@ -1,13 +1,17 @@
-import binascii
-import time
 import base64
-import json
+import binascii
 import hashlib
 import hmac
-from urllib.request import Request, urlopen
-from urllib.parse import urlencode
+import json
+import logging
+import time
 from urllib.error import URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
+
 from .utils import utc_unix_time_datetime
+
+logger: logging.Logger = logging.getLogger(__name__)
 
 
 class KrakenApi:
@@ -68,7 +72,7 @@ class KrakenApi:
         try:
             api_post_data = urlencode(post_inputs, safe=",").encode()
         except TypeError as e:
-            raise TypeError(f"API Post with missing post inputs and nonce -> {e}")
+            raise TypeError(f"API Post with missing post inputs and nonce.") from e
         return api_post_data
 
     def create_api_signature(
@@ -88,7 +92,7 @@ class KrakenApi:
         try:
             api_secret = base64.b64decode(self.api_private_key)
         except binascii.Error as e:
-            raise ValueError(f"Incorrect Kraken API private key -> {e}")
+            raise ValueError(f"Incorrect Kraken API private key.") from e
         api_hmac = hmac.new(
             api_secret,
             f"/0/private/{api_method}".encode() + api_sha256.digest(),
@@ -111,7 +115,9 @@ class KrakenApi:
         try:
             data = json.loads(data)
         except json.decoder.JSONDecodeError as e:
-            raise ValueError(f"Response received from API was wrongly formatted -> {e}")
+            raise ValueError(
+                f"Response received from API was wrongly formatted."
+            ) from e
         data = data.get("error")[0] if data.get("error") else data.get("result")
         return data
 
@@ -158,18 +164,24 @@ class KrakenApi:
         try:
             data = urlopen(request).read()
         except (ConnectionResetError, URLError):
-            # Handle connection reset error by waiting 0.5sc before retrying.
-            print("Kraken API connection error. Waiting 0.5sc...")
+            # Handle connection reset error by waiting 0.5s before retrying.
+            logger.error("Kraken API connection error. Waiting 0.5s...")
             time.sleep(0.5)
             # Resend request
             return self.send_api_request(request)
         # Decode the API response.
-        data = self.extract_response_data(data)
+        try:
+            data = self.extract_response_data(data)
+        except ValueError as e:
+            logger.error(f"Kraken API error -> {e}\nRetrying request in 0.5s...")
+            time.sleep(0.5)
+            # Resend request
+            return self.send_api_request(request)
         # Raise an error if Kraken extracted response is a string.
         if type(data) == str:
             if data == "EAPI:Rate limit exceeded":
-                # Handle rate limit from Kraken API by waiting 10sc.
-                print("Kraken API rate limit exceeded. Waiting 10sc...")
+                # Handle rate limit from Kraken API by waiting 10s.
+                logger.error("Kraken API rate limit exceeded. Waiting 10s...")
                 time.sleep(10)
                 # Resend request
                 return self.send_api_request(request)
@@ -300,7 +312,7 @@ class KrakenApi:
         return data
 
     def get_trades_history(
-        self, pair: str, start_unix_time: int, end_unix_time: int, verbose: bool = False
+        self, pair: str, start_unix_time: int, end_unix_time: int
     ) -> list:
         """
         Return trade history for specified pair from Kraken API as nested list.
@@ -310,7 +322,6 @@ class KrakenApi:
         :param pair: Order pair.
         :param start_unix_time: Start date as unix time in seconds or nanoseconds.
         :param end_unix_time: End date as unix time in seconds or nanoseconds.
-        :param verbose: Print download status or not.
         :return: Trade history as list of list.
         """
         download_end_date = utc_unix_time_datetime(end_unix_time)
@@ -327,11 +338,9 @@ class KrakenApi:
             start_unix_time = int(data.get("last")) + 1
             trades_end_date = utc_unix_time_datetime(start_unix_time)
 
-            if verbose:
-                print(
-                    f"{pair}: Downloaded trades from "
-                    f"{trades_start_date} to {trades_end_date}."
-                )
+            logger.info(
+                f"{pair}: Downloaded trades from {trades_start_date} to {trades_end_date}."
+            )
 
             # Quit when all trades are downloaded
             if (
